@@ -7,17 +7,16 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-
 @Entity
-public class Pessoa  {
+public class Pessoa {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
 
 	private String nome;
 	private Date dataDeNascimento;
+	private int endereco;
 
 	public int getId() {
 		return id;
@@ -41,6 +40,14 @@ public class Pessoa  {
 
 	public void setdataDeNascimento(Date DataDeNascimento) {
 		this.dataDeNascimento = DataDeNascimento;
+	}
+
+	public void setEndereco(int endereco) {
+		this.endereco = endereco;
+	}
+
+	public int getEndereco() {
+		return endereco;
 	}
 
 }
