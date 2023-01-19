@@ -31,6 +31,11 @@ public class PessoaController {
 		return pessoaRepository.findAll();
 	}
 	
+	@GetMapping(path="/nome/{parteNome}")
+	public Iterable<Pessoa> obterPessoasPorNome(@PathVariable String parteNome) {
+		return pessoaRepository.findByNomeContainingIgnoreCase(parteNome);
+	}
+	
 	@GetMapping(path="/{id}")
 	public Optional<Pessoa> obterPessoaPorId(@PathVariable int id){
 		return pessoaRepository.findById(id);
