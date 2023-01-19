@@ -6,6 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 public class Pessoa {
@@ -13,11 +15,23 @@ public class Pessoa {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-
+	
 	private String nome;
-	private Date dataDeNascimento;
+	private String dataDeNascimento;
 	private int endereco;
 
+	public Pessoa() {
+		
+	}
+
+	public Pessoa(String nome, 
+			String dataDeNascimento, int endereco) {
+		super();
+		this.nome = nome;
+		this.dataDeNascimento = dataDeNascimento;
+		this.endereco = endereco;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -34,11 +48,11 @@ public class Pessoa {
 		this.nome = nome;
 	}
 
-	public Date getdataDeNascimento() {
+	public String getdataDeNascimento() {
 		return dataDeNascimento;
 	}
 
-	public void setdataDeNascimento(Date DataDeNascimento) {
+	public void setdataDeNascimento(String DataDeNascimento) {
 		this.dataDeNascimento = DataDeNascimento;
 	}
 
