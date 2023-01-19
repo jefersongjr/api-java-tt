@@ -6,4 +6,6 @@ import apijavatt.model.entitys.Pessoa;
 
 public interface PessoaRepository 
 	extends CrudRepository<Pessoa, Integer>{
+	
+	public Iterable<Pessoa> findByNomeContainingIgnoreCase(String parteNome);
 }
