@@ -13,4 +13,3 @@ jpa:
 h2:
   console:
     enabled: true
-    path: /h2
