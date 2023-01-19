@@ -15,9 +15,8 @@ public class Pessoa {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-
+	
 	private String nome;
-	@Temporal(TemporalType.DATE)
 	private String dataDeNascimento;
 	private int endereco;
 
