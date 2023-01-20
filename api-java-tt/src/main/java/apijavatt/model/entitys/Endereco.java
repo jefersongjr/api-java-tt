@@ -24,12 +24,12 @@ public class Endereco {
 	
 	public Endereco(int id, 
 			String logradouro, 
-			String cEP, int numero, 
+			String CEP, int numero, 
 			String cidade, int pessoaId) {
 		super();
 		this.id = id;
 		this.logradouro = logradouro;
-		CEP = cEP;
+		this.CEP = CEP;
 		this.numero = numero;
 		this.cidade = cidade;
 		this.pessoaId = pessoaId;
@@ -55,8 +55,8 @@ public class Endereco {
 		return CEP;
 	}
 	
-	public void setCEP(String cEP) {
-		CEP = cEP;
+	public void setCEP(String CEP) {
+		this.CEP = CEP;
 	}
 	
 	public int getNumero() {
