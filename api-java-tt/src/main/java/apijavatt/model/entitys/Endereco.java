@@ -1,14 +1,20 @@
 package apijavatt.model.entitys;
 
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Endereco {
 	
 	@Id
+	@Column(name="endereco_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
@@ -17,6 +23,8 @@ public class Endereco {
 	private int numero;
 	private String cidade;
 	private int pessoaId;
+	@OneToOne(fetch = FetchType.LAZY, mappedBy= "endereco")
+	private Pessoa owner;
 	
 	public Endereco() { 
 		

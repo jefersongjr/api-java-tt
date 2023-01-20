@@ -3,9 +3,12 @@ package apijavatt.model.entitys;
 import java.sql.Date;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
@@ -18,14 +21,16 @@ public class Pessoa {
 	
 	private String nome;
 	private String dataDeNascimento;
-	private int endereco;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "endereco_id")
+	private Endereco endereco;
 
 	public Pessoa() {
 		
 	}
 
 	public Pessoa(String nome, 
-			String dataDeNascimento, int endereco) {
+			String dataDeNascimento, Endereco endereco) {
 		super();
 		this.nome = nome;
 		this.dataDeNascimento = dataDeNascimento;
@@ -56,11 +61,11 @@ public class Pessoa {
 		this.dataDeNascimento = DataDeNascimento;
 	}
 
-	public void setEndereco(int endereco) {
+	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
 
-	public int getEndereco() {
+	public Endereco getEndereco() {
 		return endereco;
 	}
 
