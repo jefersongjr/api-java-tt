@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Pessoa {
@@ -17,7 +18,6 @@ public class Pessoa {
 	@Column(name="pessoa_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
 	private String nome;
 	private String dataDeNascimento;
 	@OneToOne(fetch = FetchType.LAZY)
