@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import apijavatt.model.entitys.Pessoa;
 import apijavatt.model.repositorys.PessoaRepository;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/pessoas")
@@ -21,7 +22,7 @@ public class PessoaController {
 	private PessoaRepository pessoaRepository;
 	
 	@RequestMapping(method={RequestMethod.POST,RequestMethod.PUT})
-	public @ResponseBody Pessoa novaPessoa(Pessoa pessoa) {
+	public @ResponseBody Pessoa novaPessoa(@Valid Pessoa pessoa) {
 		pessoaRepository.save(pessoa);
 		return pessoa;
 	}
