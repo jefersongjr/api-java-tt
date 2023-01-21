@@ -20,8 +20,6 @@ public class PessoaController {
 	
 	@Autowired
 	private PessoaService pessoaService;
-	@Autowired
-	private PessoaRepository pessoaRepository;
 	
 	@PostMapping
 	public @ResponseBody Pessoa novaPessoa(Pessoa pessoa) {
