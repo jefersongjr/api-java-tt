@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import apijavatt.model.entitys.Pessoa;
-import apijavatt.model.repositorys.PessoaRepository;
 import apijavatt.service.PessoaService;
 
 @RestController

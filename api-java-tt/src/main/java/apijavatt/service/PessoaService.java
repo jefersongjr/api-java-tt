@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import apijavatt.error.InvalidFieldsException;
+import apijavatt.error.ResourceNotFoundException;
 import apijavatt.model.entitys.Pessoa;
 import apijavatt.model.repositorys.PessoaRepository;
 
@@ -34,6 +35,14 @@ public class PessoaService {
 		return pessoaRepository.findByNomeContainingIgnoreCase(parteNome);
 	}
 	
+	public Optional<Pessoa> obterPorId(int id){
+		Optional<Pessoa> pessoa = pessoaRepository.findById(id);
+		if(pessoa.isEmpty()) 
+			throw new ResourceNotFoundException("Id não cadastrado");
+		return pessoa ;
+	}
+	
+	
 	public void validarNome(String nome) {
 		if (nome == null)
 			throw new InvalidFieldsException("O campo Nome é obrigatório");
@@ -45,10 +54,5 @@ public class PessoaService {
 		if (data == null)
 			throw new InvalidFieldsException("O campo Data de Nascimento é obrigatório");
 	}
-	
-	public Optional<Pessoa> obterPorId(int id){
-		return pessoaRepository.findById(id);
-	}
-	
 
 }
