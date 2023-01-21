@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.Pattern;
 
 @Entity
 public class Endereco {
@@ -17,7 +18,7 @@ public class Endereco {
 
 	private String logradouro;
 	private String CEP;
-	private int numero;
+	private int numero = 0;
 	private String cidade;
 	private int pessoaId;
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "endereco")
