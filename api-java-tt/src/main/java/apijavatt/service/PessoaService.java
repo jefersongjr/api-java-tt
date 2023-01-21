@@ -5,9 +5,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import apijavatt.error.InvalidFieldsException;
+import apijavatt.error.ResourceNotFoundException;
 import apijavatt.model.entitys.Pessoa;
 import apijavatt.model.repositorys.PessoaRepository;
 
@@ -34,6 +34,22 @@ public class PessoaService {
 		return pessoaRepository.findByNomeContainingIgnoreCase(parteNome);
 	}
 	
+	public Optional<Pessoa> obterPorId(int id){
+		validarId(id);
+		return pessoaRepository.findById(id);
+	}
+	
+	public Pessoa alterar(Pessoa pessoa) {
+		int id = pessoa.getId();
+		validarId(id);
+		String nome = pessoa.getNome();
+		LocalDate data = pessoa.getdataDeNascimento();
+		validarNome(nome);
+		validarData(data);
+		pessoaRepository.save(pessoa);
+		return pessoa;
+	}
+	
 	public void validarNome(String nome) {
 		if (nome == null)
 			throw new InvalidFieldsException("O campo Nome é obrigatório");
@@ -45,10 +61,11 @@ public class PessoaService {
 		if (data == null)
 			throw new InvalidFieldsException("O campo Data de Nascimento é obrigatório");
 	}
-	
-	public Optional<Pessoa> obterPorId(int id){
-		return pessoaRepository.findById(id);
-	}
-	
 
+	
+	public void validarId(int id) {
+		Optional<Pessoa> pessoa = pessoaRepository.findById(id);
+		if(pessoa.isEmpty()) 
+			throw new ResourceNotFoundException("Id não cadastrado");
+	}
 }

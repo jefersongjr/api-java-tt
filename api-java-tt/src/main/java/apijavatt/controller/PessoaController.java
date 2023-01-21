@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import apijavatt.model.entitys.Pessoa;
-import apijavatt.model.repositorys.PessoaRepository;
 import apijavatt.service.PessoaService;
 
 @RestController
@@ -42,4 +42,9 @@ public class PessoaController {
 		return pessoaService.obterPorId(id);
 	}
 	
+	@PutMapping
+	public @ResponseBody Pessoa alterarPessoa(Pessoa pessoa) {
+		pessoaService.alterar(pessoa);
+		return pessoa;
+	}
 }

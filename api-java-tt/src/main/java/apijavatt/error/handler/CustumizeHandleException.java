@@ -11,6 +11,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import apijavatt.error.ExceptionResponse;
 import apijavatt.error.InvalidFieldsException;
+import apijavatt.error.ResourceNotFoundException;
 
 @ControllerAdvice
 @RestController
@@ -28,5 +29,12 @@ public class CustumizeHandleException extends ResponseEntityExceptionHandler {
 		ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(), null);
 
 		return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(ResourceNotFoundException.class)
+	public final ResponseEntity<ExceptionResponse> handleNotFoundExceptions(Exception ex) {
+		ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(), null);
+
+		return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
 	}
 }
