@@ -17,6 +17,7 @@ public class EnderecoService {
 	@PostMapping
 	public Endereco salvar(Endereco endereco) {
 		validarRua(endereco);
+		validarNumero(endereco);
 		enderecoRepository.save(endereco);
 		return endereco;
 	}
@@ -28,4 +29,11 @@ public class EnderecoService {
 		if(rua.length() <= 4 )
 			throw new InvalidFieldsException("O campo Logradouro deve conter pelo menos 5 caracteres.");
 	}
+	
+	public void validarNumero(Endereco endereco) {
+		int num = endereco.getNumero();
+		if (num < 0)
+			throw new InvalidFieldsException("O campo número não pode ser um número negativo");
+	}
+	
 }
