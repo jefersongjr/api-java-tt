@@ -20,7 +20,7 @@ public class PessoaController {
 	
 	@Autowired
 	private PessoaService pessoaService;
-
+	@Autowired
 	private PessoaRepository pessoaRepository;
 	
 	@PostMapping
@@ -31,17 +31,17 @@ public class PessoaController {
 	
 	@GetMapping
 	public Iterable<Pessoa> obterPessoas() {
-		return pessoaRepository.findAll();
+		return pessoaService.listarTodasPessoas();
 	}
 	
 	@GetMapping(path="/nome/{parteNome}")
 	public Iterable<Pessoa> obterPessoasPorNome(@PathVariable String parteNome) {
-		return pessoaRepository.findByNomeContainingIgnoreCase(parteNome);
+		return pessoaService.obterPorNome(parteNome);
 	}
 	
 	@GetMapping(path="/{id}")
 	public Optional<Pessoa> obterPessoaPorId(@PathVariable int id){
-		return pessoaRepository.findById(id);
+		return pessoaService.obterPorId(id);
 	}
 	
 }
