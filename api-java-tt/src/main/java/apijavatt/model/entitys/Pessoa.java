@@ -1,6 +1,10 @@
 package apijavatt.model.entitys;
 
 
+import java.time.LocalDate;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -19,7 +23,8 @@ public class Pessoa {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String nome;
-	private String dataDeNascimento;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private LocalDate dataDeNascimento;	
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
@@ -29,7 +34,7 @@ public class Pessoa {
 	}
 
 	public Pessoa(String nome, 
-			String dataDeNascimento, Endereco endereco) {
+			LocalDate dataDeNascimento, Endereco endereco) {
 		super();
 		this.nome = nome;
 		this.dataDeNascimento = dataDeNascimento;
@@ -52,11 +57,11 @@ public class Pessoa {
 		this.nome = nome;
 	}
 
-	public String getdataDeNascimento() {
+	public LocalDate getdataDeNascimento() {
 		return dataDeNascimento;
 	}
 
-	public void setdataDeNascimento(String DataDeNascimento) {
+	public void setdataDeNascimento(LocalDate DataDeNascimento) {
 		this.dataDeNascimento = DataDeNascimento;
 	}
 
