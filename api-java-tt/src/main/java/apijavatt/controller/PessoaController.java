@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import apijavatt.model.entitys.Pessoa;
 import apijavatt.model.repositorys.PessoaRepository;
+import apijavatt.service.PessoaService;
 import jakarta.validation.Valid;
 
 @RestController
@@ -19,11 +21,13 @@ import jakarta.validation.Valid;
 public class PessoaController {
 	
 	@Autowired
+	private PessoaService pessoaService;
+
 	private PessoaRepository pessoaRepository;
 	
-	@RequestMapping(method={RequestMethod.POST,RequestMethod.PUT})
-	public @ResponseBody Pessoa novaPessoa(@Valid Pessoa pessoa) {
-		pessoaRepository.save(pessoa);
+	@PostMapping
+	public @ResponseBody Pessoa novaPessoa(Pessoa pessoa) {
+		pessoaService.salvar(pessoa);
 		return pessoa;
 	}
 	
