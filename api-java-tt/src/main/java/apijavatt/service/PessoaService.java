@@ -1,9 +1,11 @@
 package apijavatt.service;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import apijavatt.error.InvalidFieldsException;
 import apijavatt.model.entitys.Pessoa;
@@ -24,6 +26,14 @@ public class PessoaService {
 		return pessoa;
 	}
 	
+	public Iterable<Pessoa> listarTodasPessoas() {
+		return pessoaRepository.findAll();
+	}
+	
+	public Iterable<Pessoa> obterPorNome( String parteNome) {
+		return pessoaRepository.findByNomeContainingIgnoreCase(parteNome);
+	}
+	
 	public void validarNome(String nome) {
 		if (nome == null)
 			throw new InvalidFieldsException("O campo Nome é obrigatório");
@@ -35,5 +45,10 @@ public class PessoaService {
 		if (data == null)
 			throw new InvalidFieldsException("O campo Data de Nascimento é obrigatório");
 	}
+	
+	public Optional<Pessoa> obterPorId(int id){
+		return pessoaRepository.findById(id);
+	}
+	
 
 }
