@@ -4,7 +4,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import apijavatt.error.InvalidFieldsException;
 import apijavatt.error.ResourceNotFoundException;
@@ -24,7 +25,6 @@ public class EnderecoService {
 	@Autowired
 	private PessoaRepository pessoaRepository;
 
-	@PostMapping
 	public Endereco salvar(Endereco endereco) {
 		validarRua(endereco);
 		validarNumero(endereco);
@@ -34,7 +34,21 @@ public class EnderecoService {
 		enderecoRepository.save(endereco);
 		return endereco;
 	}
-
+	
+	public Iterable<Endereco> obterPorId(int pessoaId) {
+		return enderecoRepository.findByPessoaId(pessoaId);
+	}
+	
+	public  Endereco alterarEndereco(Endereco endereco) {
+		validarRua(endereco);
+		validarNumero(endereco);
+		validarCidade(endereco);
+		validarPessoaId(endereco);
+		validandoCep(endereco);
+		enderecoRepository.save(endereco);
+		return endereco;
+	}
+	
 	public void validarRua(Endereco endereco) {
 		String rua = endereco.getLogradouro();
 		if (rua == null)
