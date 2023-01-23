@@ -31,6 +31,7 @@ public class PessoaController {
 	}
 	
 	@GetMapping
+	@ResponseStatus(HttpStatus.OK)
 	public Iterable<Pessoa> obterPessoas() {
 		return pessoaService.listarTodasPessoas();
 	}

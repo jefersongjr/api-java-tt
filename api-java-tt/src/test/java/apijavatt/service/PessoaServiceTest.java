@@ -48,7 +48,7 @@ class PessoaServiceTest {
 	}
 
 	@Test
-	@DisplayName("Testa se uma pessoa é atualizada corretamente")
+	@DisplayName("Testa se uma pessoa é criada corretamente")
 	void CreateShouldPersitData() {
 		LocalDate data = LocalDate.of(1991, 02, 11);
 
@@ -72,7 +72,6 @@ class PessoaServiceTest {
 		Iterable<Pessoa> lista = pessoaService.listarTodasPessoas();
 		assertNotNull(lista);
 		assertEquals(1, IterableUtils.size(lista));
-
 	}
 
 	@Test
