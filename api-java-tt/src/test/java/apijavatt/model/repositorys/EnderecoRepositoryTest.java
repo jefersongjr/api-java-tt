@@ -1,8 +1,6 @@
 package apijavatt.model.repositorys;
 
 import java.time.LocalDate;
-import java.util.Optional;
-
 import org.apache.commons.collections4.IterableUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -13,7 +11,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import apijavatt.model.entitys.Endereco;
-import apijavatt.model.entitys.Pessoa;
 
 
 @RunWith(SpringRunner.class)
