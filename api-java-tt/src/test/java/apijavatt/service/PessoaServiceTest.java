@@ -3,6 +3,7 @@ package apijavatt.service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -25,6 +26,9 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+
+import apijavatt.error.InvalidFieldsException;
+import apijavatt.error.ResourceNotFoundException;
 import apijavatt.model.entitys.Pessoa;
 import apijavatt.model.repositorys.PessoaRepository;
 
@@ -37,11 +41,11 @@ class PessoaServiceTest {
 	private PessoaRepository pessoaRepository;
 	@InjectMocks
 	private PessoaService pessoaService;
-	
-	 @BeforeEach
-	    void setUp() {
-	        MockitoAnnotations.openMocks(this);
-	    }
+
+	@BeforeEach
+	void setUp() {
+		MockitoAnnotations.openMocks(this);
+	}
 
 	@Test
 	@DisplayName("Testa se uma pessoa é atualizada corretamente")
@@ -77,69 +81,86 @@ class PessoaServiceTest {
 		Pessoa pessoa = new Pessoa();
 		pessoa.setId(1);
 
-		when(pessoaRepository.findById(pessoa.getId())).thenReturn(Optional.of(pessoa));       
-		Optional<Pessoa> response = pessoaService.obterPorId(pessoa.getId());
-        assertNotNull(response);
-        assertThat(response).isNotEmpty();
-        }
+		when(pessoaRepository.findById(pessoa.getId())).thenReturn(Optional.of(pessoa));
+		Optional<Pessoa> resposta = pessoaService.obterPorId(pessoa.getId());
+		assertNotNull(resposta);
+		assertThat(resposta).isNotEmpty();
+	}
+
+	@Test
+	@DisplayName("Testa a busca de uma pessoa por Nome")
+	void whenFindByNameThenReturnAnUserInstance() {
+		Pessoa pessoa = new Pessoa();
+		pessoa.setNome("João Carlos");
+
+		when(pessoaRepository.findByNomeContainingIgnoreCase(pessoa.getNome())).thenReturn(List.of(pessoa));
+		Iterable<Pessoa> resposta = pessoaService.obterPorNome("João Carlos");
+		assertNotNull(resposta);
+		assertThat(resposta).isNotEmpty();
+	}
+
+	@Test
+	@DisplayName("Testa a atualiazação de uma pessoa pelo id")
+	void whenUpdateAPeopleAndReturnSucess() {
+		LocalDate data = LocalDate.of(1991, 02, 11);
+		Pessoa pessoa = new Pessoa("João das Neves", data, null);
+
+		when(pessoaRepository.findById(pessoa.getId())).thenReturn(Optional.of(pessoa));
+		Pessoa novaPessoa = new Pessoa("João das Glorias", data, null);
+
+		pessoaService.alterar(pessoa.getId(), novaPessoa);
+		verify(pessoaRepository).save(novaPessoa);
+		verify(pessoaRepository).findById(pessoa.getId());
+	}
+
+	@Test
+	@DisplayName("Testa quando o campo nome é null")
+	void whenTheNameIsNullException() {
+		LocalDate data = LocalDate.of(1991, 02, 11);
+
+		Pessoa pessoa = new Pessoa(null, data, null);
+		try {
+			pessoaService.salvar(pessoa);
+		} catch (Exception ex) {
+			assertEquals(InvalidFieldsException.class, ex.getClass());
+			assertEquals("O campo Nome é obrigatório", ex.getMessage());
+		}
+	}
+
+	@Test
+	@DisplayName("Testa quando o campo nome é é inválido")
+	void whenTheNameIsInvalidException() {
+		LocalDate data = LocalDate.of(1991, 02, 11);
+
+		Pessoa pessoa = new Pessoa("JP", data, null);
+		try {
+			pessoaService.salvar(pessoa);
+		} catch (Exception ex) {
+			assertEquals(InvalidFieldsException.class, ex.getClass());
+			assertEquals("O campo Nome tem que ter pelo menos 3 caracteres.", ex.getMessage());
+		}
+	}
+
+	@Test
+	@DisplayName("Testa quando o data é invalido")
+	void whenTheDateIsNullException() {
+		Pessoa pessoa = new Pessoa("João Paulo", null, null);
+		try {
+			pessoaService.salvar(pessoa);
+		} catch (Exception ex) {
+			assertEquals(InvalidFieldsException.class, ex.getClass());
+			assertEquals("O campo Data de Nascimento é obrigatório", ex.getMessage());
+		}
+	}
+	
+	@Test
+	@DisplayName("Testa quando o data é invalido")
+	void whenTheIdIsNullException() {
+		try {
+			pessoaService.obterPorId(1);
+		} catch (Exception ex) {
+			assertEquals(ResourceNotFoundException.class, ex.getClass());
+			assertEquals("Id não cadastrado", ex.getMessage());
+		}
+	}
 }
-//
-//	@Test
-//	@DisplayName("Testa se as pessoas são listadas corretamente")
-//	void FindAllContainigShould() {
-//		LocalDate data = LocalDate.of(1991, 02, 11);
-//		LocalDate data2 = LocalDate.of(1993, 02, 10);
-//		LocalDate data3 = LocalDate.of(1990, 12, 10);
-//
-//		Pessoa pessoa = new Pessoa("Gabriel Barbosa", data, null);
-//		Pessoa pessoa2 = new Pessoa("Bruno Henrique", data2, null);
-//		Pessoa pessoa3 = new Pessoa("Everto Ribeiro", data3, null);
-//
-//		pessoaRepository.save(pessoa);
-//		pessoaRepository.save(pessoa2);
-//		pessoaRepository.save(pessoa3);
-//
-//		Iterable<Pessoa> pessoaLista = pessoaRepository.findAll();
-//
-//		Assertions.assertThat(IterableUtils.size(pessoaLista)).isEqualTo(3);
-//	}
-//
-//	@Test
-//	@DisplayName("Testa se a pesquisa por nome é listada corretamente")
-//	void FindByNameIgnoreCaseContainigShould() {
-//		LocalDate data = LocalDate.of(1991, 02, 11);
-//		LocalDate data2 = LocalDate.of(1993, 02, 10);
-//		LocalDate data3 = LocalDate.of(1990, 12, 10);
-//
-//		Pessoa pessoa = new Pessoa("Gabriel Barbosa", data, null);
-//		Pessoa pessoa2 = new Pessoa("Bruno Henrique", data2, null);
-//		Pessoa pessoa3 = new Pessoa("Gabriel Ribeiro", data3, null);
-//
-//		pessoaRepository.save(pessoa);
-//		pessoaRepository.save(pessoa2);
-//		pessoaRepository.save(pessoa3);
-//
-//		Iterable<Pessoa> pessoaLista = pessoaRepository.findByNomeContainingIgnoreCase("Gabriel");
-//
-//		Assertions.assertThat(IterableUtils.size(pessoaLista)).isEqualTo(2);
-//	}
-//
-//	@Test
-//	@DisplayName("Testa se a pesquisa por id é listada corretamente")
-//	void FindByIdContainigShould() {
-//		LocalDate data = LocalDate.of(1991, 02, 11);
-//		LocalDate data2 = LocalDate.of(1993, 02, 10);
-//		LocalDate data3 = LocalDate.of(1990, 12, 10);
-//
-//		Pessoa pessoa = new Pessoa("Gabriel Barbosa", data, null);
-//		pessoaRepository.save(pessoa);
-//		Pessoa pessoa2 = new Pessoa("Bruno Henrique", data2, null);
-//		pessoaRepository.save(pessoa2);
-//		Pessoa pessoa3 = new Pessoa("Gabriel Ribeiro", data3, null);
-//		pessoaRepository.save(pessoa3);
-//
-//		Optional<Pessoa> pessoaLista = pessoaRepository.findById(2);
-//		int idLista = pessoaLista.get().getId();
-//
-//		Assertions.assertThat(idLista).isEqualTo(2);
-//	}
