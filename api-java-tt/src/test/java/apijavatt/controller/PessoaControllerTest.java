@@ -1,11 +1,14 @@
 package apijavatt.controller;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.apache.commons.collections4.IterableUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -46,5 +49,24 @@ public class PessoaControllerTest {
 				.statusCode();
 		
 		 assertEquals(201, code);
+	}
+	
+	@Test
+	@DisplayName("Testa se a Lista de pessoas é monstrada corretamente")
+	void ListShouldAllPersitedData() {
+		LocalDate data = LocalDate.of(1991, 02, 11);
+		Pessoa pessoa = new Pessoa("Gabriel Barbosa", data, null);
+
+		when(pessoaController.obterPessoas()).thenReturn(List.of(pessoa));
+		RestAssuredMockMvc.given().accept(ContentType.JSON).post("/pessoas");
+
+		Iterable<Pessoa> lista = pessoaService.listarTodasPessoas();
+		
+		assertNotNull(lista);
+		
+		int code = RestAssuredMockMvc.given().accept(ContentType.JSON).when().get("/pessoas").andReturn()
+				.statusCode();
+		assertEquals(200, code);
+
 	}
 }
