@@ -1,9 +1,7 @@
 package apijavatt.model.repositorys;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -21,19 +19,35 @@ import apijavatt.model.entitys.Pessoa;
 class PessoaRepositoryTest {
 	@Autowired
 	private PessoaRepository pessoaRepository;
-	
-	@Test
-	@DisplayName("Testes para Pessoa Repository")
-	void CreateShouldPersitData() {
-		LocalDate data = LocalDate.of(1991,02,11);
 
-		Pessoa  pessoa = new Pessoa("Gabriel Barbosa", data, null);
+	@Test
+	@DisplayName("Testa se uma pessoa é cadastrada corretamente")
+	void CreateShouldPersitData() {
+		LocalDate data = LocalDate.of(1991, 02, 11);
+
+		Pessoa pessoa = new Pessoa("Gabriel Barbosa", data, null);
 		pessoaRepository.save(pessoa);
-		
+
 		Assertions.assertThat(pessoa.getId()).isNotNull();
 		Assertions.assertThat(pessoa.getNome()).isEqualTo("Gabriel Barbosa");
 		Assertions.assertThat(pessoa.getdataDeNascimento()).isEqualTo(data);
 	}
 
+	@Test
+	@DisplayName("Testa se uma pessoa é atualizada corretamente")
+	void CreateShouldChangeAndPersitData() {
+		LocalDate data = LocalDate.of(1991, 02, 11);
+		LocalDate data2 = LocalDate.of(1993, 02, 10);
+
+		Pessoa pessoa = new Pessoa("Gabriel Barbosa", data, null);
+		pessoaRepository.save(pessoa);
+		pessoa.setNome("Gabriel Henrique");
+		pessoa.setdataDeNascimento(data2);
+		
+		pessoa = pessoaRepository.save(pessoa);
+
+		Assertions.assertThat(pessoa.getNome()).isEqualTo("Gabriel Henrique");
+		Assertions.assertThat(pessoa.getdataDeNascimento()).isEqualTo(data2);
+	}
 
 }
