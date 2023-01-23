@@ -43,8 +43,8 @@ public class PessoaController {
 	}
 	
 	@PutMapping
-	public @ResponseBody Pessoa alterarPessoa(Pessoa pessoa) {
-		pessoaService.alterar(pessoa);
+	public @ResponseBody Pessoa alterarPessoa(int id ,Pessoa pessoa) {
+		pessoaService.alterar(id, pessoa);
 		return pessoa;
 	}
 }
