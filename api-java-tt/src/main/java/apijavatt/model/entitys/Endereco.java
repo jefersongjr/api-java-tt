@@ -15,7 +15,6 @@ public class Endereco {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-
 	private String logradouro;
 	private String CEP;
 	private int numero = 0;
@@ -28,13 +27,13 @@ public class Endereco {
 
 	}
 
-	public Endereco(int id, String logradouro, String CEP, int numero, String cidade, int pessoaId) {
+	public Endereco(int id, String logradouro, int numero, String cidade, String CEP, int pessoaId) {
 		super();
 		this.id = id;
 		this.logradouro = logradouro;
-		this.CEP = CEP;
 		this.numero = numero;
 		this.cidade = cidade;
+		this.CEP = CEP;
 		this.pessoaId = pessoaId;
 	}
 

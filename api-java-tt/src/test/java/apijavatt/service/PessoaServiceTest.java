@@ -63,7 +63,7 @@ class PessoaServiceTest {
 	}
 
 	@Test
-	@DisplayName("Testa se a Lista de pessoas é monstrada corretamente")
+	@DisplayName("Testa se a Lista de pessoas é mostrada corretamente")
 	void ListShouldAllPersitedData() {
 		LocalDate data = LocalDate.of(1991, 02, 11);
 		Pessoa pessoa = new Pessoa("Gabriel Barbosa", data, null);
