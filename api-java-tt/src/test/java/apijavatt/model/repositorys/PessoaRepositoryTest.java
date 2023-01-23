@@ -1,7 +1,7 @@
 package apijavatt.model.repositorys;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.collections4.IterableUtils;
 import org.assertj.core.api.Assertions;
@@ -11,8 +11,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
 import apijavatt.model.entitys.Pessoa;
+
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -65,12 +65,12 @@ class PessoaRepositoryTest {
 		pessoaRepository.save(pessoa);
 		pessoaRepository.save(pessoa2);
 		pessoaRepository.save(pessoa3);
-		
+
 		Iterable<Pessoa> pessoaLista = pessoaRepository.findAll();
 
 		Assertions.assertThat(IterableUtils.size(pessoaLista)).isEqualTo(3);
 	}
-	
+
 	@Test
 	@DisplayName("Testa se a pesquisa por nome é listada corretamente")
 	void FindByNameIgnoreCaseContainigShould() {
@@ -85,10 +85,29 @@ class PessoaRepositoryTest {
 		pessoaRepository.save(pessoa);
 		pessoaRepository.save(pessoa2);
 		pessoaRepository.save(pessoa3);
-		
+
 		Iterable<Pessoa> pessoaLista = pessoaRepository.findByNomeContainingIgnoreCase("Gabriel");
 
 		Assertions.assertThat(IterableUtils.size(pessoaLista)).isEqualTo(2);
 	}
 
+	@Test
+	@DisplayName("Testa se a pesquisa por id é listada corretamente")
+	void FindByIdContainigShould() {
+		LocalDate data = LocalDate.of(1991, 02, 11);
+		LocalDate data2 = LocalDate.of(1993, 02, 10);
+		LocalDate data3 = LocalDate.of(1990, 12, 10);
+
+		Pessoa pessoa = new Pessoa("Gabriel Barbosa", data, null);
+		pessoaRepository.save(pessoa);
+		Pessoa pessoa2 = new Pessoa("Bruno Henrique", data2, null);
+		pessoaRepository.save(pessoa2);
+		Pessoa pessoa3 = new Pessoa("Gabriel Ribeiro", data3, null);
+		pessoaRepository.save(pessoa3);
+
+		Optional<Pessoa> pessoaLista = pessoaRepository.findById(2);
+		int idLista = pessoaLista.get().getId();
+
+		Assertions.assertThat(idLista).isEqualTo(2);
+	}
 }
