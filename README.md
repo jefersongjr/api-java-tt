@@ -8,7 +8,7 @@
 <p align="center">
  <a href="#sobre">Sobre</a> • 
  <a href="#ferramentas">Tecnologias</a> • 
- <a href="#tecnologias">Tecnologias</a> • 
+ <a href="#requisitos">Como executar</a> • 
  <a href="#contribuicao">Contribuição</a> • 
  <a href="#licenc-a">Licença</a> • 
  <a href="#autor">Autor</a>
@@ -34,15 +34,33 @@ suas funcionalidades.
 * JUnit 5
 * Mockito
 
-<h2 id="requisitos"> Pré-requisitos </h2>
+<h2 id="requisitos"> 📖 Como Executar: </h2>
 
+<h4> ✔️ Rodando o Back End (servidor)</h4>
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 [Git](https://git-scm.com), [Java-JDK](https://www.oracle.com/java/technologies/downloads/). 
 Além disto é bom ter um editor para trabalhar com o código como o [Eclipse](https://www.eclipse.org/downloads/)
 
-<h2> 🎲 Rodando o Back End (servidor)</h2>
+<h4> 🎲 Rodando o Back End (servidor)</h4>
+
+```bash
 
 # Clone este repositório
 $ git clone git@github.com:jefersongjr/api-java-tt.git
 
+# Acesse a pasta do projeto
+$ navegue ate a pasta root do projeto
+
+#os dois próximos passos devem ser execudados no diretório que tem o arquivo pom.xml
+
+# Instale as dependências
+$ mvn install
+
+# Execute a aplicação
+$ mvn spring-boot:run
+
+# O servidor iniciará na porta:8080
+# O Banco de dados h2 iniciará na porta:8080/h2-console
+
+```
 
