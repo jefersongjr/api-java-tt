@@ -8,9 +8,8 @@
 <p align="center">
  <a href="#sobre">Sobre</a> • 
  <a href="#ferramentas">Tecnologias</a> • 
- <a href="#requisitos">Como executar</a> • 
- <a href="#contribuicao">Contribuição</a> • 
- <a href="#licenc-a">Licença</a> • 
+ <a href="#requisitos">Como executar: </a> • 
+ <a href="#instrucoes">Como Usar:</a> • 
  <a href="#autor">Autor</a>
 </p>
 
@@ -21,12 +20,7 @@ na etapa técnica do processo seletivo da [Attornatus Procuradoria Digital](http
 Consistia em contruir uma API simples, para o cadastro de pessoas e também, escrever testes para<br>
 suas funcionalidades.
 
-<h4 align="center"> 
-	🚧  API Java 🚀 Em construção...  🚧
-</h4>
-
-
-<h2 id="tecnologias"> 🛠️ Construído com: </h2>
+<h2 id="ferramentas"> 🛠️ Construído com: </h2>
 
 * Java
 * Spring Boot
@@ -51,7 +45,7 @@ $ git clone git@github.com:jefersongjr/api-java-tt.git
 # Acesse a pasta do projeto
 $ navegue ate a pasta root do projeto
 
-#os dois próximos passos devem ser execudados no diretório que tem o arquivo pom.xml
+#os dois próximos passos devem ser executados no diretório que tem o arquivo pom.xml
 
 # Instale as dependências
 $ mvn install
@@ -63,4 +57,5 @@ $ mvn spring-boot:run
 # O Banco de dados h2 iniciará na porta:8080/h2-console
 
 ```
+<h2 id="instrucoes"> 💻 Usando a Aplicação: </h2>
 
