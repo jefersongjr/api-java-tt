@@ -37,7 +37,7 @@ Além disto é bom ter um editor para trabalhar com o código como o [Eclipse](h
 
 <h4> 🎲 Rodando o Back End (servidor)</h4>
 
-```bash
+```
 
 # Clone este repositório
 $ git clone git@github.com:jefersongjr/api-java-tt.git
@@ -58,4 +58,63 @@ $ mvn spring-boot:run
 
 ```
 <h2 id="instrucoes"> 💻 Usando a Aplicação: </h2>
+
+<h3> 📊 Banco de Dados </h3>
+
+- O banco de dados pode ser acessado na porta:8080/h2-console 
+- Os dados de acesso estão no arquivo ../src/main/resource/application.yml
+- O Banco de dados tem duas entidades: Pessoa e Endereço. Ambas iniciam vazias.
+
+![db](https://github.com/jefersongjr/api-java-tt/blob/main/api-java-tt/src/images/db.jpg)
+
+<h3> Cadastrando uma Pessoa: </h3>
+
+<h5> 🏗️ Método Post: "/pessoas" <h5>			
+- Como primeiro passo deve-se criar uma pessoa.
+- A API não permitirá criar um endereço sem nenhuma pessoa criada.
+- Ao criar uma pessoa o endereço receberá o valor **null**
+- Os campos nome e dataDeNascimento são **Obrigatórios**
+- O campo nome é do tipo string e não pode ter menos de 3 caracteres
+- o campo dataDeNascimento deve ser uma data válida.
+
+ Ao enviar uma requisição bem sucedida nesse formato,				
+```
+{
+  "nome": "Daniel",
+  "dataDeNascimento": "20/01/1991",
+  "endereco": 1
+}
+
+```
+a Aplicação devolverá uma resposta assim: 
+				
+![responsePost](https://github.com/jefersongjr/api-java-tt/blob/main/api-java-tt/src/images/repostaPost.jpg)
+
+	
+<h3> Cadastrando um Endereço: </h3>
+
+<h5> 🏗️ Método Post: "/endereco" <h5>
+- Com a pessoa criada , um endereço pode ser criado.
+- O único campo que não é obrigátorio é o campo número mas ele não pode ser negativo.
+- O campo pessoaId deve ser o id de uma pessoa já cadastrada
+- O campo CEP deve ser um CEP válido.
+- O campo Cidade é do tipo string e não pode ter menos de 5 caracteres
+- O campo Logradouro é do tipo string e não pode ter menos de 4 caracteres
+- Uma pessoa pode ter vários endereços
+
+	
+ Ao enviar uma requisição bem sucedida nesse formato,				
+```
+{
+    "logradouro": "Rua A",
+    "CEP": "22222-333",
+    "numero": 1,
+    "cidade": "Rio de Janeiro",
+    "pessoaId": 1
+}
+
+```
+a Aplicação devolverá uma resposta assim:
+
+![responsePost]()
 
