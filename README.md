@@ -9,7 +9,7 @@
  <a href="#sobre">Sobre</a> • 
  <a href="#ferramentas">Tecnologias</a> • 
  <a href="#requisitos">Como executar: </a> • 
- <a href="#instrucoes">Como Usar:</a> • 
+ <a href="#instrucoes">Como Usar</a> • 
  <a href="#autor">Autor</a>
 </p>
 
