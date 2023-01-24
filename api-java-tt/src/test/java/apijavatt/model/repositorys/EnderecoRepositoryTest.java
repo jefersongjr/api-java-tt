@@ -23,8 +23,6 @@ class EnderecoRepositoryTest {
 	@Test
 	@DisplayName("Testa se uma endereço é cadastrada corretamente")
 	void CreateShouldPersitData() {
-		LocalDate data = LocalDate.of(1991, 02, 11);
-
 		Endereco endereco = new Endereco(1, "Rua A", 1, "Rio de Janeiro", "28354-015", 1);
 		enderecoRepository.save(endereco);
 
