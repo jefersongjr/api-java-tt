@@ -1,6 +1,8 @@
 package apijavatt.model.entitys;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -14,10 +16,14 @@ public class Endereco {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+    @JsonProperty("Logradouro")
 	private String logradouro;
 	private String CEP;
+    @JsonProperty("Número")
 	private int numero = 0;
+    @JsonProperty("Cidade")
 	private String cidade;
+    @JsonProperty("Pessoa")
 	private int pessoaId;
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "endereco")
 	private Pessoa owner;
