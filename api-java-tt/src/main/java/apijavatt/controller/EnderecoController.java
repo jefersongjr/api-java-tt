@@ -29,10 +29,5 @@ public class EnderecoController {
 	public Iterable<Endereco> obterEnderecoPorPessoaId(@PathVariable int pessoaId) {
 		return enderecoService.obterPorId(pessoaId);
 	}
-	
-	@PutMapping
-	public @ResponseBody Endereco mudarEndereco(Endereco endereco) {
-		enderecoService.alterarEndereco(endereco);
-		return endereco;
-	}
+
 }

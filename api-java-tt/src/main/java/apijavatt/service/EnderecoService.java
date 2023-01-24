@@ -29,24 +29,14 @@ public class EnderecoService {
 		validarRua(endereco);
 		validarNumero(endereco);
 		validarCidade(endereco);
-		validarPessoaId(endereco);
 		validandoCep(endereco);
+		validarPessoaId(endereco);
 		enderecoRepository.save(endereco);
 		return endereco;
 	}
 	
 	public Iterable<Endereco> obterPorId(int pessoaId) {
 		return enderecoRepository.findByPessoaId(pessoaId);
-	}
-	
-	public  Endereco alterarEndereco(Endereco endereco) {
-		validarRua(endereco);
-		validarNumero(endereco);
-		validarCidade(endereco);
-		validarPessoaId(endereco);
-		validandoCep(endereco);
-		enderecoRepository.save(endereco);
-		return endereco;
 	}
 	
 	public void validarRua(Endereco endereco) {
@@ -78,7 +68,7 @@ public class EnderecoService {
 		if (pessoaId == 0)
 			throw new InvalidFieldsException("O campo pessoaId é obrigatório.");
 		if (pessoaId < 0)
-			throw new InvalidFieldsException("O campo pessoaId deve conter pelo menos 1 caracter.");
+			throw new InvalidFieldsException("O campo pessoaId deve ser maior que 0.");
 		if (pessoa.isEmpty())
 			throw new ResourceNotFoundException("O campo pessoaId deve ser o Id de uma pessoa cadastrada.");
 	}
