@@ -5,6 +5,8 @@ import java.time.LocalDate;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -13,7 +15,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
-import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Pessoa {
@@ -22,9 +23,12 @@ public class Pessoa {
 	@Column(name="pessoa_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+    @JsonProperty("Nome")
 	private String nome;
+    @JsonProperty("Data de Nascimento")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataDeNascimento;	
+    @JsonProperty("Endereço")
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
