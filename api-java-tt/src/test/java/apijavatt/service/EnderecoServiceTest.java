@@ -4,15 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.time.LocalDate;
-
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -92,7 +85,7 @@ class EnderecoServiceTest {
 	}
 	
 	@Test
-	@DisplayName("Testa se uma execeção é lançada quando o campo nome é é inválido")
+	@DisplayName("Testa se uma execeção é lançada quando o campo logradouro é é inválido")
 	void whenTheStreetIsInvalidException() {
 		Endereco endereco = new Endereco(1, "Ru", 1, "Rio de Janeiro", "28354-015", 1);
 		try {
