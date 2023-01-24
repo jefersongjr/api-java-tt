@@ -193,7 +193,7 @@ a Aplicação devolverá uma resposta assim:
 	
 - Os testes podem ser rodados utilizando o comando $ mvn test
 	
-** Cobertura dos Testes **
+**Cobertura dos Testes**
 
 ![responseput](https://github.com/jefersongjr/api-java-tt/blob/main/api-java-tt/src/images/testCoverage.jpg)
 
