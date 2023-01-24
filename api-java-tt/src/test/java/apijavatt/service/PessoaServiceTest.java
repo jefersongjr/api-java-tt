@@ -120,7 +120,7 @@ class PessoaServiceTest {
 			assertEquals("O campo Nome é obrigatório", ex.getMessage());
 		}
 	}
-
+ 
 	@Test
 	@DisplayName("Testa quando o campo nome é é inválido")
 	void whenTheNameIsInvalidException() {
