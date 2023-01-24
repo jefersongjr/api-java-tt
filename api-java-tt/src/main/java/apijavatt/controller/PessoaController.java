@@ -42,8 +42,8 @@ public class PessoaController {
 		return pessoaService.obterPorNome(parteNome);
 	}
 	
-	@GetMapping(path="/{id}")
 	@ResponseStatus(HttpStatus.OK)
+	@GetMapping(path="/{id}")
 	public Optional<Pessoa> obterPessoaPorId(@PathVariable int id){
 		return pessoaService.obterPorId(id);
 	}
