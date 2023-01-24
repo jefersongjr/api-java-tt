@@ -10,7 +10,7 @@
  <a href="#ferramentas">Tecnologias</a> • 
  <a href="#requisitos">Como executar: </a> • 
  <a href="#instrucoes">Como Usar</a> • 
- <a href="#autor">Autor</a>
+ <a href="#testes">Testes</a>
 </p>
 
 <h2 id="sobre"> 🚀📋 Sobre: </h2>
@@ -187,6 +187,15 @@ a Aplicação devolverá uma resposta assim:
 
 a Aplicação devolverá uma resposta assim: 
 
-![responseput](https://github.com/jefersongjr/api-java-tt/blob/main/api-java-tt/src/images/getEnderecoPessoaId.jpg)
+![responsegetPessoaId](https://github.com/jefersongjr/api-java-tt/blob/main/api-java-tt/src/images/getEnderecoPessoaId.jpg)
+
+<h2 id="testes"> 🧪 Testes </h2>
+	
+- Os testes podem ser rodados utilizando o comando $ mvn test
+	
+** Cobertura dos Testes **
+
+![responseput](https://github.com/jefersongjr/api-java-tt/blob/main/api-java-tt/src/images/testCoverage.jpg)
 
 
+	
