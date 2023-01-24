@@ -69,7 +69,8 @@ $ mvn spring-boot:run
 
 <h3> Cadastrando uma Pessoa: </h3>
 
-<h5> 🏗️ Método Post: "/pessoas" <h5>			
+<h5> 🏗️ Método Post: "/pessoas" <h5>	
+	
 - Como primeiro passo deve-se criar uma pessoa.
 - A API não permitirá criar um endereço sem nenhuma pessoa criada.
 - Ao criar uma pessoa o endereço receberá o valor **null**
@@ -94,13 +95,14 @@ a Aplicação devolverá uma resposta assim:
 <h3> Cadastrando um Endereço: </h3>
 
 <h5> 🏗️ Método Post: "/endereco" <h5>
+	
 - Com a pessoa criada , um endereço pode ser criado.
 - O único campo que não é obrigátorio é o campo número mas ele não pode ser negativo.
 - O campo pessoaId deve ser o id de uma pessoa já cadastrada
 - O campo CEP deve ser um CEP válido.
 - O campo Cidade é do tipo string e não pode ter menos de 5 caracteres
 - O campo Logradouro é do tipo string e não pode ter menos de 4 caracteres
-- Uma pessoa pode ter vários endereços
+- Uma pessoa cadastrada pode ter vários endereços
 
 	
  Ao enviar uma requisição bem sucedida nesse formato,				
@@ -116,5 +118,28 @@ a Aplicação devolverá uma resposta assim:
 ```
 a Aplicação devolverá uma resposta assim:
 
-![responsePost]()
+![responsePost](https://github.com/jefersongjr/api-java-tt/blob/main/api-java-tt/src/images/reponsePost2.jpg)
+
+<h3> Atualizando uma Pessoa: </h3>
+
+<h5> 🏗️ Método Put: "/pessoas" <h5>	
+	
+- Com a pessoa e o endereço cadastrado, deve ser escolhido o endereço principal da pessoa.
+- Todos os campos deverão ser preenchidos.
+- As mesmas validações de criar uma pessoa serão feitas.
+- O Campo endereco deverá ser um inteiro.
+- Se o endereço não estiver cadastrado o valor será null.
+	
+ Ao enviar uma requisição bem sucedida nesse formato,				
+```
+{
+  "id": 1
+  "nome": "Daniel",
+  "dataDeNascimento": "20/01/1991",
+  "endereco": 1
+}
+
+```
+a Aplicação devolverá uma resposta assim: 
+
 
