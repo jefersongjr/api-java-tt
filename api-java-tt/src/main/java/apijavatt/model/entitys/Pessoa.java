@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
@@ -28,8 +29,9 @@ public class Pessoa {
     @JsonProperty("Data de Nascimento")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataDeNascimento;	
-    @JsonProperty("Endereço")
+    @JsonProperty("Endereço Principal")
 	@OneToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties(value = {"applications", "hibernateLazyInitializer"}) 
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
 
