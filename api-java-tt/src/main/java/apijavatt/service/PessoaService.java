@@ -39,13 +39,13 @@ public class PessoaService {
 		return pessoaRepository.findById(id);
 	}
 	
-	public Pessoa alterar(Pessoa pessoa) {
-		int id = pessoa.getId();
+	public Pessoa alterar(int id,Pessoa pessoa) {
 		validarId(id);
 		String nome = pessoa.getNome();
 		LocalDate data = pessoa.getdataDeNascimento();
 		validarNome(nome);
 		validarData(data);
+		pessoa.setId(id);
 		pessoaRepository.save(pessoa);
 		return pessoa;
 	}
