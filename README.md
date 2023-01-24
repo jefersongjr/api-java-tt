@@ -142,4 +142,51 @@ a Aplicação devolverá uma resposta assim:
 ```
 a Aplicação devolverá uma resposta assim: 
 
+![responseput](https://github.com/jefersongjr/api-java-tt/blob/main/api-java-tt/src/images/responsePut.jpg)
+
+
+<h3> Listando todas Pessoas cadastradas: </h3>
+
+<h5> :clipboard: Método Get: "/pessoas" <h5>
+
+- Ao fazer uma requisição get para "/pessoas"
+
+a Aplicação devolverá uma resposta assim: 
+
+![responseput](https://github.com/jefersongjr/api-java-tt/blob/main/api-java-tt/src/images/responseGet.jpg)
+
+
+<h3> Listando uma Pessoa pelo seu Id: </h3>
+
+<h5> :clipboard: Método Get: "/pessoas/{id}" <h5>
+
+- Ao fazer uma requisição get para "/pessoas/1"
+
+a Aplicação devolverá uma resposta assim: 
+
+![responseput](https://github.com/jefersongjr/api-java-tt/blob/main/api-java-tt/src/images/resposeGetID.jpg)
+
+
+
+<h3> Listando uma Pessoa por parte do seu Nome: </h3>
+
+<h5> :clipboard: Método Get: "/pessoas/nome/{parteDonNome}" <h5>
+
+- Ao fazer uma requisição get para "/pessoas/nome/jo"
+
+a Aplicação devolverá uma resposta assim: 
+
+![responseput](https://github.com/jefersongjr/api-java-tt/blob/main/api-java-tt/src/images/responseGetNome.jpg)
+
+
+<h3> Listando todos Endereços de uma Pessoa: </h3>
+
+<h5> :clipboard: Método Get: "/endereco/pessoa/{id}" <h5>
+
+- Ao fazer uma requisição get para "/pessoas/pessoa/1"
+
+a Aplicação devolverá uma resposta assim: 
+
+![responseput](https://github.com/jefersongjr/api-java-tt/blob/main/api-java-tt/src/images/getEnderecoPessoaId.jpg)
+
 
