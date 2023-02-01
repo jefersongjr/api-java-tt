@@ -15,8 +15,8 @@
 
 <h2 id="sobre"> 🚀📋 Sobre: </h2>
 
-Essa foi desenvolvida por mim ,[Jeferson Gomes](https://www.linkedin.com/in/jefersongjr/)
-na etapa técnica do processo seletivo da [Attornatus Procuradoria Digital](https://www.linkedin.com/company/attornatus-procuradoria-digital/) . <br>
+Essa foi API desenvolvida por mim ,[Jeferson Gomes](https://www.linkedin.com/in/jefersongjr/)
+na etapa técnica do processo seletivo da empresa [Attornatus Procuradoria Digital](https://www.linkedin.com/company/attornatus-procuradoria-digital/) . <br>
 Consistia em contruir uma API simples, para o cadastro de pessoas e também, escrever testes para<br>
 suas funcionalidades.
 
