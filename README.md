@@ -5,7 +5,7 @@
 	🚧  API Java 🚀 Em construção...  🚧
 </h4>
 
-<p align="center">
+<p align="center">    
  <a href="#sobre">Sobre</a> • 
  <a href="#ferramentas">Tecnologias</a> • 
  <a href="#requisitos">Como executar: </a> • 
@@ -39,7 +39,7 @@ Além disto é bom ter um editor para trabalhar com o código como o [Eclipse](h
 
 ```
 
-# Clone este repositório
+# Clone este repositório.
 $ git clone git@github.com:jefersongjr/api-java-tt.git
 
 # Acesse a pasta do projeto
